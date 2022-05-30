@@ -13,7 +13,7 @@ namespace TrueFalseEditor
     public partial class Main : Form
     {
         TrueFalseDatabase database;
-
+        string filterType = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
 
         public Main()
         {
@@ -28,20 +28,22 @@ namespace TrueFalseEditor
         private void menuItemNew_Click(object sender, EventArgs e)
         {
             SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Filter = filterType;
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                database = new TrueFalseDatabase(dlg.FileName);
-                database.Add("Замля круглая?", true);
-                database.Save();
+                database = new TrueFalseDatabase($"{dlg.FileName}");
+                database.Add("#1", true);
                 nudNumber.Minimum = 1;
                 nudNumber.Maximum = 1;
                 nudNumber.Value = 1;
+                ShowInTextBox(database[0].Text);
             }
         }
 
         private void menuItemOpen_Click(object sender, EventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = filterType;
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 database = new TrueFalseDatabase(dlg.FileName);
@@ -49,40 +51,91 @@ namespace TrueFalseEditor
                 nudNumber.Minimum = 1;
                 nudNumber.Maximum = database.Count;
                 nudNumber.Value = 1;
+                ShowInTextBox(database[0].Text);
             }
 
         }
 
         private void menuItemSave_Click(object sender, EventArgs e)
         {
-            database.Save();
+            if (database != null)
+            {
+                database.Save();
+            }
+            else
+            {
+                MessageBox.Show("Отсутвуют данные для сохранения!", "TrueFalseEditor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void menuItemSaveAs_Click(object sender, EventArgs e)
+        {
+            if (database != null)
+            {
+                SaveFileDialog dlg = new SaveFileDialog();
+                dlg.Filter = filterType;
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    database.Save(dlg.FileName);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Отсутствуют данные для сохранения!", "TrueFalseEditor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            database.Add($"#{database.Count + 1}", true);
-            nudNumber.Maximum = database.Count;
-            nudNumber.Value = database.Count;
+            if (database != null)
+            {
+                database.Add($"#{database.Count + 1}", true);
+                nudNumber.Maximum = database.Count;
+                nudNumber.Value = database.Count;
+            }
+            else
+            {
+                MessageBox.Show("Не задан файл!", "TrueFalseEditor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            database.Remove((int)nudNumber.Value - 1);
-            nudNumber.Maximum--;
-            nudNumber.Value--;
+            if (database != null && database.Any())
+            {
+                database.Remove((int)nudNumber.Value - 1);
+                if (nudNumber.Value > 1)
+                    nudNumber.Value--;
+                else
+                    ShowInTextBox(database[(int)nudNumber.Value - 1].Text);
+                nudNumber.Maximum = database.Count;
+            }
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void btnApply_Click(object sender, EventArgs e)
         {
-            database[(int)nudNumber.Value - 1].Text = tbQuestion.Text;
-            database[(int)nudNumber.Value - 1].TrueFalse = cbTrue.Checked;
+            if(database != null && database.Any()) 
+            {
+                database[(int)nudNumber.Value - 1].Text = tbQuestion.Text;
+                database[(int)nudNumber.Value - 1].TrueFalse = TrueFalseComboBox.SelectedIndex == 0 ? true : false;
+            }
         }
 
         private void nudNumber_ValueChanged(object sender, EventArgs e)
         {
-            tbQuestion.Text = database[(int)nudNumber.Value - 1].Text;
-            cbTrue.Checked = database[(int)nudNumber.Value - 1].TrueFalse;
+            switch (database[(int)nudNumber.Value - 1].TrueFalse)
+            {
+                case true:
+                    TrueFalseComboBox.SelectedIndex = 0;
+                    break;
+                case false:
+                    TrueFalseComboBox.SelectedIndex = 1;
+                    break;
+            }
+            ShowInTextBox(database[(int)nudNumber.Value - 1].Text);
         }
+
+        private void ShowInTextBox(string txt) => tbQuestion.Text = txt;
     }
 }

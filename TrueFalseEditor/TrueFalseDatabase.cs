@@ -43,9 +43,10 @@ namespace TrueFalseEditor
             }
         }
 
+        public bool Any() => list.Any();
+
         public  void Load()
         {
-
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Question>));
             FileStream fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
             list = (List<Question>)xmlSerializer.Deserialize(fileStream);
@@ -55,7 +56,16 @@ namespace TrueFalseEditor
         public  void Save()
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Question>));
-            FileStream fileStream = new FileStream(fileName, FileMode.Create, FileAccess.Write);
+            FileStream fileStream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
+            xmlSerializer.Serialize(fileStream, list);
+            fileStream.Close();
+        }
+
+        public void Save(string fileName)
+        {
+            this.fileName = fileName;
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Question>));
+            FileStream fileStream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
             xmlSerializer.Serialize(fileStream, list);
             fileStream.Close();
         }
