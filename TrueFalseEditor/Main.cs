@@ -18,6 +18,7 @@ namespace TrueFalseEditor
         public Main()
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void menuItemExit_Click(object sender, EventArgs e)
@@ -137,5 +138,11 @@ namespace TrueFalseEditor
         }
 
         private void ShowInTextBox(string txt) => tbQuestion.Text = txt;
+
+        private void AboutProgram_Click(object sender, EventArgs e)
+        {
+            AboutProgram frm = new AboutProgram();
+            frm.ShowDialog();
+        }
     }
 }

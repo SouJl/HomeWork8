@@ -41,7 +41,7 @@
             this.menuItemSave = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemSaveAs = new System.Windows.Forms.ToolStripMenuItem();
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.оПрограммеToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.AboutProgram = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItemExit = new System.Windows.Forms.ToolStripMenuItem();
             this.tbQuestion = new System.Windows.Forms.TextBox();
@@ -153,54 +153,55 @@
             // menuItemNew
             // 
             this.menuItemNew.Name = "menuItemNew";
-            this.menuItemNew.Size = new System.Drawing.Size(120, 22);
+            this.menuItemNew.Size = new System.Drawing.Size(180, 22);
             this.menuItemNew.Text = "New";
             this.menuItemNew.Click += new System.EventHandler(this.menuItemNew_Click);
             // 
             // menuItemOpen
             // 
             this.menuItemOpen.Name = "menuItemOpen";
-            this.menuItemOpen.Size = new System.Drawing.Size(120, 22);
+            this.menuItemOpen.Size = new System.Drawing.Size(180, 22);
             this.menuItemOpen.Text = "Open";
             this.menuItemOpen.Click += new System.EventHandler(this.menuItemOpen_Click);
             // 
             // menuItemSave
             // 
             this.menuItemSave.Name = "menuItemSave";
-            this.menuItemSave.Size = new System.Drawing.Size(120, 22);
+            this.menuItemSave.Size = new System.Drawing.Size(180, 22);
             this.menuItemSave.Text = "Save";
             this.menuItemSave.Click += new System.EventHandler(this.menuItemSave_Click);
             // 
             // menuItemSaveAs
             // 
             this.menuItemSaveAs.Name = "menuItemSaveAs";
-            this.menuItemSaveAs.Size = new System.Drawing.Size(120, 22);
+            this.menuItemSaveAs.Size = new System.Drawing.Size(180, 22);
             this.menuItemSaveAs.Text = "Save As";
             this.menuItemSaveAs.Click += new System.EventHandler(this.menuItemSaveAs_Click);
             // 
             // оПрограммеToolStripMenuItem
             // 
             this.оПрограммеToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.оПрограммеToolStripMenuItem1});
+            this.AboutProgram});
             this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.оПрограммеToolStripMenuItem.Text = "Справка";
             // 
-            // оПрограммеToolStripMenuItem1
+            // AboutProgram
             // 
-            this.оПрограммеToolStripMenuItem1.Name = "оПрограммеToolStripMenuItem1";
-            this.оПрограммеToolStripMenuItem1.Size = new System.Drawing.Size(149, 22);
-            this.оПрограммеToolStripMenuItem1.Text = "О программе";
+            this.AboutProgram.Name = "AboutProgram";
+            this.AboutProgram.Size = new System.Drawing.Size(180, 22);
+            this.AboutProgram.Text = "О программе";
+            this.AboutProgram.Click += new System.EventHandler(this.AboutProgram_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(117, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // menuItemExit
             // 
             this.menuItemExit.Name = "menuItemExit";
-            this.menuItemExit.Size = new System.Drawing.Size(120, 22);
+            this.menuItemExit.Size = new System.Drawing.Size(180, 22);
             this.menuItemExit.Text = "Exit";
             this.menuItemExit.Click += new System.EventHandler(this.menuItemExit_Click);
             // 
@@ -259,7 +260,11 @@
             this.Controls.Add(this.tbQuestion);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.panel1);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(783, 487);
+            this.MinimumSize = new System.Drawing.Size(783, 487);
             this.Name = "Main";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TrueFalseEditor";
             this.panel1.ResumeLayout(false);
@@ -290,7 +295,7 @@
         private System.Windows.Forms.TextBox tbQuestion;
         private System.Windows.Forms.ToolStripMenuItem menuItemSaveAs;
         private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem AboutProgram;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox TrueFalseComboBox;
