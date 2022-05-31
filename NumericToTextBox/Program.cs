@@ -6,6 +6,10 @@ using System.Windows.Forms;
 
 namespace NumericToTextBox
 {
+    /// Мельников Александр Сергеевич
+    /// <summary>
+    /// Связка Text элемента TextBox со свойством Value элемента NumericUpDown
+    /// </summary>
     static class Program
     {
         /// <summary>

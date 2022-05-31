@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace TrueFalseEditor
+namespace NoteKeeper
 {
     public partial class AboutProgram : Form
     {
@@ -10,7 +10,7 @@ namespace TrueFalseEditor
             StartPosition = FormStartPosition.CenterParent;
             fioLabel.Text = "Мельников Александр";
             versionLabel.Text = Application.ProductVersion;
-            programInfoLabel.Text = "Программа TrueFalseEditor выполнена в рамках 8 практической работы по курсу C# GeekBrains";
+            programInfoLabel.Text = "Программа NoteKeeper выполнена в рамках 8 практической работы 4 задания по курсу C# GeekBrains";
         }
     }
 }

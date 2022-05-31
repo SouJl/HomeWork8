@@ -4,13 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TrueFalseEditor
+namespace NoteKeeper
 {
     /// Мельников Александр Сергеевич
     /// <summary>
-    /// Доработка приложения TrueFalseEditor
+    /// Разработка приложения хранения заметок NoteKeeper
     /// </summary>
-    internal static class Program
+    static class Program
     {
         /// <summary>
         /// The main entry point for the application.
@@ -20,7 +20,7 @@ namespace TrueFalseEditor
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main());
+            Application.Run(new MainForm());
         }
     }
 }

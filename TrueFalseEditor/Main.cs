@@ -21,6 +21,8 @@ namespace TrueFalseEditor
             StartPosition = FormStartPosition.CenterScreen;
         }
 
+        #region MenuItemClick
+
         private void menuItemExit_Click(object sender, EventArgs e)
         {
             Close();
@@ -32,7 +34,7 @@ namespace TrueFalseEditor
             dlg.Filter = filterType;
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                database = new TrueFalseDatabase($"{dlg.FileName}");
+                database = new TrueFalseDatabase(dlg.FileName);
                 database.Add("#1", true);
                 nudNumber.Minimum = 1;
                 nudNumber.Maximum = 1;
@@ -65,7 +67,7 @@ namespace TrueFalseEditor
             }
             else
             {
-                MessageBox.Show("Отсутвуют данные для сохранения!", "TrueFalseEditor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Отсутствуют данные для сохранения!", "TrueFalseEditor", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -85,6 +87,10 @@ namespace TrueFalseEditor
                 MessageBox.Show("Отсутствуют данные для сохранения!", "TrueFalseEditor", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        #endregion
+
+        #region ButtonClick
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -123,26 +129,35 @@ namespace TrueFalseEditor
             }
         }
 
+        #endregion
+
         private void nudNumber_ValueChanged(object sender, EventArgs e)
         {
-            switch (database[(int)nudNumber.Value - 1].TrueFalse)
+            if(database!=null && database.Any()) 
             {
-                case true:
-                    TrueFalseComboBox.SelectedIndex = 0;
-                    break;
-                case false:
-                    TrueFalseComboBox.SelectedIndex = 1;
-                    break;
+                switch (database[(int)nudNumber.Value - 1].TrueFalse)
+                {
+                    case true:
+                        TrueFalseComboBox.SelectedIndex = 0;
+                        break;
+                    case false:
+                        TrueFalseComboBox.SelectedIndex = 1;
+                        break;
+                }
+                ShowInTextBox(database[(int)nudNumber.Value - 1].Text);
             }
-            ShowInTextBox(database[(int)nudNumber.Value - 1].Text);
+            else 
+            {
+                nudNumber.Value = 0;
+            }
         }
-
-        private void ShowInTextBox(string txt) => tbQuestion.Text = txt;
-
+       
         private void AboutProgram_Click(object sender, EventArgs e)
         {
             AboutProgram frm = new AboutProgram();
             frm.ShowDialog();
         }
+
+        private void ShowInTextBox(string txt) => tbQuestion.Text = txt;
     }
 }
